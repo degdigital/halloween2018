@@ -1,0 +1,74 @@
+[debug] [2018-10-17T16:10:15.540Z] ----------------------------------------------------------------------
+[debug] [2018-10-17T16:10:15.542Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-10-17T16:10:15.542Z] CLI Version:   4.2.0
+[debug] [2018-10-17T16:10:15.542Z] Platform:      darwin
+[debug] [2018-10-17T16:10:15.542Z] Node Version:  v9.8.0
+[debug] [2018-10-17T16:10:15.543Z] Time:          Wed Oct 17 2018 11:10:15 GMT-0500 (CDT)
+[debug] [2018-10-17T16:10:15.543Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-17T16:10:15.551Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-17T16:10:15.551Z] > authorizing via signed-in user
+[debug] [2018-10-17T16:10:15.553Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/deghalloween2018  
+ 
+[debug] [2018-10-17T16:10:15.815Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-17T16:10:15.816Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/deghalloween2018  
+ 
+[debug] [2018-10-17T16:10:17.003Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/aladage/Projects/_degsideprojects/halloween2018/current'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-10-17T16:10:17.783Z] Fetching environment
+[debug] [2018-10-17T16:10:17.785Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/973288714012:getServerAppConfig  
+ 
+[debug] [2018-10-17T16:10:17.786Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/973288714012/clients/_:getWebAppConfig  
+ 
+[debug] [2018-10-17T16:10:18.379Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-17T16:10:18.380Z] Starting @google-cloud/functions-emulator
+[debug] [2018-10-17T16:10:18.527Z] <<< HTTP RESPONSE 200
+[info] i  hosting[deghalloween2018]: Serving hosting files from: public
+[info] ✔  hosting[deghalloween2018]: Local server: http://localhost:5000
+[debug] [2018-10-17T16:10:19.418Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
+[debug] [2018-10-17T16:26:28.774Z] Error: socket hang up
+    at createHangUpError (_http_client.js:335:15)
+    at TLSSocket.socketOnEnd (_http_client.js:428:23)
+    at TLSSocket.emit (events.js:185:15)
+    at TLSSocket.emit (domain.js:421:20)
+    at endReadableNT (_stream_readable.js:1101:12)
+    at process._tickCallback (internal/process/next_tick.js:114:19)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2018-10-17T16:28:23.148Z] ----------------------------------------------------------------------
+[debug] [2018-10-17T16:28:23.150Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-10-17T16:28:23.150Z] CLI Version:   4.2.0
+[debug] [2018-10-17T16:28:23.150Z] Platform:      darwin
+[debug] [2018-10-17T16:28:23.150Z] Node Version:  v9.8.0
+[debug] [2018-10-17T16:28:23.151Z] Time:          Wed Oct 17 2018 11:28:23 GMT-0500 (CDT)
+[debug] [2018-10-17T16:28:23.151Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-17T16:28:23.161Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-17T16:28:23.161Z] > authorizing via signed-in user
+[debug] [2018-10-17T16:28:23.163Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/deghalloween2018  
+ 
+[debug] [2018-10-17T16:28:23.648Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-17T16:28:23.649Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/deghalloween2018  
+ 
+[debug] [2018-10-17T16:28:24.009Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/aladage/Projects/_degsideprojects/halloween2018/current'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-10-17T16:28:24.706Z] Fetching environment
+[debug] [2018-10-17T16:28:24.708Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/973288714012:getServerAppConfig  
+ 
+[debug] [2018-10-17T16:28:24.708Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/973288714012/clients/_:getWebAppConfig  
+ 
+[debug] [2018-10-17T16:28:25.021Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-17T16:28:25.021Z] Starting @google-cloud/functions-emulator
+[debug] [2018-10-17T16:28:25.498Z] <<< HTTP RESPONSE 200
+[info] i  hosting[deghalloween2018]: Serving hosting files from: public
+[info] ✔  hosting[deghalloween2018]: Local server: http://localhost:5000
+[debug] [2018-10-17T16:28:26.064Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
+[info] Shutting down...
