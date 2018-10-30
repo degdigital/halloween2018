@@ -6,12 +6,17 @@ const audio = () => {
 
     const play = (filename, el = audioEl) => {
         el.setAttribute('src', `${path}/${filename}${suffix}`);
-        el.pause();
+        stop();
         el.play();
-    }
+    };
+
+    const stop = (el = audioEl) => {
+        el.pause();
+    };
 
     return {
-        play
+        play,
+        stop
     };
 
 };

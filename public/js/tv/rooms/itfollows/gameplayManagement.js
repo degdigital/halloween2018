@@ -153,6 +153,7 @@ const gameplayManagement = (el, settings = {}) => {
             updates[`/roomManagement/itFollows/users/${userKey}/correctTask`] = null;
         });
         db.ref().update(updates);
+        audio.stop();
 
         db.ref(`/roomManagement/itFollows`).update({
             winOrLose: true
