@@ -12,10 +12,10 @@ const gameplayManagement = (el, settings = {}) => {
     const instructionsTime = 15;
     let buttonCount = 6;
     let users;
-    let numberToWin = 10;
+    let numberToWin = 15;
     let data = {
         instructions: `You're being followed.`,
-        subInstructions: `<div class="pre-subinstructions"><p>To escape, press the button on your phone to complete the 5 tasks on the TV.</p><p>If the timer expires&hellip;so do you.</p><p>Get ready!</p></div>`,
+        subInstructions: `<div class="pre-subinstructions"><p>To escape, press the button on your phone to complete the ${numberToWin} tasks on the TV.</p><p>If the timer expires&hellip;so do you.</p><p>Get ready!</p></div>`,
         correctCount: 0,
         correctTask: null
     };
