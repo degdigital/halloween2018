@@ -1,5 +1,6 @@
 import {replaceContent} from '../../../utils/domUtils.js';
 import tasks from './tasks.js';
+import audio from '../../components/audio.js';
 import {countdownTimer} from '../../../utils/countdownTimer.js';
 
 const gameplayManagement = (el, settings = {}) => {
@@ -8,11 +9,13 @@ const gameplayManagement = (el, settings = {}) => {
     const correctTaskRef = db.ref('roomManagement/itFollows/correctTask');
     const correctCountRef = db.ref('roomManagement/itFollows/correctCount');
     const usersRef = db.ref('roomManagement/itFollows/users');
+    const instructionsTime = 3;
     let buttonCount = 6;
     let users;
     let numberToWin = 5;
     let data = {
-        instructions: `You're being followed...prepare for instructions...`,
+        instructions: `You're being followed.`,
+        subInstructions: `<div class="pre-subinstructions"><p>To escape, press the button on your phone to complete the 5 tasks on the TV.</p><p>If the timer expires&hellip;so do you.</p><p>Get ready!</p></div>`,
         correctCount: 0,
         correctTask: null
     };
@@ -22,19 +25,33 @@ const gameplayManagement = (el, settings = {}) => {
 
     const init = async () => {
         users = await getUsers();
-        renderWrappers();
-        countdownTimer(timerWrapperEl, 5, onTimerExpiration);
+        if (users) {
+            renderWrappers();
+            countdownTimer(timerWrapperEl, instructionsTime, onTimerExpiration);
+        } else {
+            db.ref('roomManagement/itFollows').update({
+                correctTask: null,
+                correctCount: 0,
+                users: null,
+                status: 'idle'
+            }).then(() => init());
+        }
     };
 
     const renderWrappers = () => {
         replaceContent(el, `
-            <div class="js-video-wrapper"></div>
-            <div class="js-content-wrapper content-wrapper">
-                <h1 class="js-instructions pre-instructions">${data.instructions}</h1>
+            <div class="itfollowstv itfollowstv-gameplay">
+                <div class="wrapper">
+                    <video preload="true" autoplay muted class="video js-video"></video>
+                    <div class="js-content-wrapper content-wrapper">
+                        <h1 class="js-instructions pre-instructions">${data.instructions}</h1>
+                        ${data.subInstructions}
+                    </div>
+                    <div class="js-timer-wrapper timer-wrapper"></div>
+                </div>
             </div>
-            <div class="js-timer-wrapper timer-wrapper"></div>
         `);
-        videoWrapperEl = el.querySelector('.js-video-wrapper');
+        videoWrapperEl = el.querySelector('.js-video');
         contentWrapperEl = el.querySelector('.js-content-wrapper');
         timerWrapperEl = el.querySelector('.js-timer-wrapper');
     };
@@ -42,7 +59,7 @@ const gameplayManagement = (el, settings = {}) => {
     const render = () => {
         replaceContent(contentWrapperEl, `
                 <h1 class="js-instructions instructions">${data.instructions}</h1>
-                <div class="correct-count">Correct count: ${data.correctCount} / ${numberToWin}</div>
+                <div class="correct-count">${data.correctCount} / ${numberToWin}</div>
             </div>
         `);
     };
@@ -55,16 +72,17 @@ const gameplayManagement = (el, settings = {}) => {
 
     const start = () => {
         settings.onStartCallback();
-        startNewTask();
+        audio.play('heartbeat');
+        startNewTask(true);
     };
 
-    const startNewTask = () => {
+    const startNewTask = (resetVideo = false) => {
         const correctTask = getRandomTask();
         saveUserTasks(correctTask);
         saveCorrectTask(correctTask);
-        replaceContent(videoWrapperEl, `
-            <video loop autoplay class="video js-video" src="../../video/room1reversed.mp4"></video>
-        `);
+        if (resetVideo === true) {
+            videoWrapperEl.setAttribute('src', '../../video/warehouse.mp4');
+        }
     };
 
     const saveUserTasks = correctTask => {
@@ -135,6 +153,14 @@ const gameplayManagement = (el, settings = {}) => {
             updates[`/roomManagement/itFollows/users/${userKey}/correctTask`] = null;
         });
         db.ref().update(updates);
+
+        db.ref(`/roomManagement/itFollows`).update({
+            winOrLose: true
+        }).then(() => {
+            db.ref(`/roomManagement/itFollows`).update({
+                winOrLose: null
+            });
+        });
     };
 
     const getRandomTask = () => {
@@ -142,7 +168,9 @@ const gameplayManagement = (el, settings = {}) => {
     };
 
     const getUsers = () => {
-        return usersRef.once('value').then(snapshot => Object.keys(snapshot.val()));
+        return usersRef.once('value').then(snapshot => {
+            return snapshot.val() ? Object.keys(snapshot.val()) : null;
+        });
     };
 
     init();

@@ -1,16 +1,27 @@
 import {replaceContent} from '../../../utils/domUtils.js';
 import {countdownTimer} from '../../../utils/countdownTimer.js';
 import roomManagement from '../../components/roomManagement.js';
+import audio from '../../components/audio.js';
 import gameplayManagement from './gameplayManagement.js';
 
 const el = document.getElementById('app');
+const backgroundAudioEl = document.querySelector('.js-bg-audio');
+const winScreenTime = 10;
+const diedScreenTime = 10;
+const gameplayTime = 10;
 let gameplayManagementInst = null;
 let roomManagementInst;
 let gameWon = false;
 
 const init = () => {
-    initRoomManagement();
+    document.addEventListener('click', onInitialClick);
     
+};
+
+const onInitialClick = () => {
+    initRoomManagement();
+    audio.play('background', backgroundAudioEl);
+    document.removeEventListener('click', onInitialClick);
 };
 
 const initRoomManagement = () => {
@@ -25,16 +36,24 @@ const initRoomManagement = () => {
 const onIdle = generatedCode => {
     gameplayManagementInst = null;
     replaceContent(el, `
-        <h1>It Followsssssssssss</h1>
-        Enter this code: <strong>${generatedCode}</strong>
+        <div class="itfollowstv">
+            <div class="wrapper">
+                <h1>It Follows</h1>
+                <p class="room-code">Room code: <strong>${generatedCode}</strong></p>
+            </div>
+        </div>
     `);
 };
 
 const onAwaitingPlayers = generatedCode => {
     replaceContent(el, `
-        <h1>Waiting...</h1>
-        <p>Waiting for more players. Press start on your device when everyone's here.</p>
-        Enter this code: <strong>${generatedCode}</strong>
+        <div class="itfollowstv">
+            <div class="wrapper">
+                <h1>It Follows</h1>
+                <p class="room-code">Room code: <strong>${generatedCode}</strong></p>
+                <p>Waiting for more players. Press start on your device when everyone's here.</p>
+            </div>
+        </div>
     `);
 };
 
@@ -46,7 +65,7 @@ const onOccupied = userInfo => {
     const gameplayEl = el.querySelector('.js-gameplay');
     const countdownEl = el.querySelector('.js-countdown');
     gameplayManagementInst = gameplayManagement(gameplayEl, {
-        onStartCallback: () => countdownTimer(countdownEl, 20, onDead),
+        onStartCallback: () => countdownTimer(countdownEl, gameplayTime, onDead),
         onWinCallback: onWin
     });
 };
@@ -54,27 +73,33 @@ const onOccupied = userInfo => {
 const onWin = () => {
     gameWon = true;
     replaceContent(el, `
-        <div class="content-wrapper">
-            <h1>You win!</h1>
+        <div class="itfollowstv">
+            <div class="wrapper">
+                <h1 class="survived">You survived...this time.</h1>
+            </div>
         </div>
     `);
     if (gameplayManagementInst) {
         gameplayManagementInst.reset();
     }
-    countdownTimer(null, 5, () => roomManagementInst.endSession());
+    countdownTimer(null, winScreenTime, () => roomManagementInst.endSession());
 };
 
 const onDead = () => {
     if (gameWon === false) {
+        audio.play('scream');
         replaceContent(el, `
-            <div class="content-wrapper">
-                <h1 class="dead">YOU'RE DEAD.</h1>
+            <div class="itfollowstv">
+                <div class="wrapper">
+                    <h1 class="dead">YOU'RE DEAD.</h1>
+                </div>
             </div>
         `);
     }
     if (gameplayManagementInst) {
         gameplayManagementInst.reset();
     }
+    countdownTimer(null, diedScreenTime, () => roomManagementInst.endSession());
 };
 
 init();

@@ -128,9 +128,7 @@ const roomManagement = el => {
                     status: roomStatuses.awaitingPlayers,
                     users: {
                         ...currentUserData,
-                        [newUserKey]: {
-                            firstName: userInfo.firstName
-                        }
+                        [newUserKey]: true
                     }
                 };
             }
@@ -154,7 +152,7 @@ const roomManagement = el => {
                 if (roomObj.status === roomStatuses.occupied) {
                     buttonText += ' (Occupied)';
                 } else if (roomObj.status === roomStatuses.awaitingPlayers) {
-                    buttonText += ' (Waiting for more players, come on in!)';
+                    // buttonText += ' (Waiting for more players, come on in!)';
                 }
                 return `
                     ${output}
@@ -162,26 +160,33 @@ const roomManagement = el => {
                 `;
             }, '');
         replaceContent(el, `
-            <h1>Select a Room:</h1>
-            ${buttonsContent}
+            <div class="pwa-pregame">
+                <h1>Select a Room:</h1>
+                ${buttonsContent}
+            </div>
         `);
     };
 
     const renderCodeEnterScreen = roomId => {
         replaceContent(el, `
-            <h1>Enter the code you see on the screen</h1>
-            <form class="${codeEnterFormClass}" ${roomIdAttr}="${roomId}">
-                <input type="number">
-                <button type="submit">Submit</button>
-                <button class="${codeEnterFormCancelTriggerClass}" type="button">Cancel</button>
-            </form>`);
+            <div class="pwa-pregame pwa-pregame--enter-code">
+                <h1>Enter the code you see on the screen</h1>
+                <form class="${codeEnterFormClass}" ${roomIdAttr}="${roomId}">
+                    <input type="tel" autofocus>
+                    <button type="submit">Submit</button>
+                    <button class="${codeEnterFormCancelTriggerClass}" type="button">Cancel</button>
+                </form>
+            </div>
+        `);
+        el.querySelector('.pwa-pregame--enter-code input').focus();
     };
 
     const renderWaitingScreen = roomId => {
         replaceContent(el, `
-            <h1>You're in!</h1>
-            <p>Waiting for others.</p>
-            <button class="${startTriggerClass}" ${roomIdAttr}="${roomId}">Everyone's here, let's go!</button>
+            <div class="pwa-pregame">
+                <h1>Waiting for others</h1>
+                <button class="${startTriggerClass}" ${roomIdAttr}="${roomId}">Everyone's here, let's go!</button>
+            </div>
         `);
     };
 

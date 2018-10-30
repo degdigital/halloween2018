@@ -1,0 +1,106 @@
+.itfollowstv {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.itfollowstv .wrapper {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
+.itfollowstv h1 {
+    font-size: 9rem;
+}
+
+.room-code {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
+}
+
+.room-code strong {
+    color: #f00;
+}
+
+.dead {
+    color: #f00;
+    font-size: 8rem;
+}
+
+.video {
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.content-wrapper {
+    text-align: center;
+    z-index: 1;
+}
+
+.pre-instructions {
+    font-size: 4rem;
+}
+
+.pre-subinstructions {
+    color: #f00;
+    margin: 0 auto 1.75rem;
+    max-width: 70%;
+}
+
+.pre-subinstructions p {
+    font-size: 2.5rem;
+    margin-top: 1.75rem;
+}
+
+
+.itfollowstv-gameplay .timer-wrapper {
+    position: static;
+    text-align: center;
+}
+
+
+.timer-wrapper {
+    display: inline-block;
+    font-size: 4rem;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+}
+
+
+
+.instructions {
+    font-size: 6rem;
+}
+
+.itfollowstv-gameplay .correct-count {
+    font-size: 4rem;
+    left: 2rem;
+    position: absolute;
+    top: 2rem;
+}
+
+.itfollowstv-gameplay .instructions {
+    bottom: 2rem;
+    color: #f00;
+    font-size: 5rem;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.itfollowstv h1.survived {
+    font-size: 5rem;
+}

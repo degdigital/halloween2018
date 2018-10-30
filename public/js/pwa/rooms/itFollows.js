@@ -19,8 +19,11 @@ const itFollows = (el, options = {}) => {
 
     const start = () => {
         replaceContent(el, `
-            It Follows
-            <div class="js-buttons-wrapper"></div>
+            <div class="itfollows-wrapper">
+                <div class="js-buttons-wrapper">
+                    <h1>It Follows</h1>
+                </div>
+            </div>
         `);
         buttonsWrapperEl = buttonsWrapperEl || el.querySelector('.js-buttons-wrapper');
     };
@@ -36,6 +39,7 @@ const itFollows = (el, options = {}) => {
             }
         });
         firebase.database().ref(`/roomManagement/itFollows/users/${userData.key}/`).on('value', onUserDataChange);
+        firebase.database().ref(`/roomManagement/itFollows/winOrLose`).on('value', winOrLose);
     };
 
     const onUserDataChange = snapshot => {
@@ -45,6 +49,14 @@ const itFollows = (el, options = {}) => {
         }
         renderButtons(vals);
     };
+
+    const winOrLose = snapshot => {
+        if (snapshot.val() === true) {
+            replaceContent(el, `
+                <div class="itfollows-wrapper"></div>
+            `);
+        }
+    }
 
     const onTaskButtonClick = el => {
         if (el.name === correctTask.name && isTrueStr(el.value) === correctTask.value) {
@@ -58,7 +70,7 @@ const itFollows = (el, options = {}) => {
         if (vals && vals.tasks && vals.tasks.length > 0) {
             replaceContent(buttonsWrapperEl, vals.tasks.reduce((output, task) => `
                 ${output}
-                <button class="${settings.taskButtonClass}" name="${task.name}" value="${task.value}">${task.label}</button><br>
+                <button class="${settings.taskButtonClass}" name="${task.name}" value="${task.value}">${task.label}</button>
             `, ''));
         }
     };
