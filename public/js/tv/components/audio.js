@@ -1,16 +1,31 @@
 const audio = () => {
 
-    const audioEl = document.querySelector('.js-audio');
+    const backgroundEl = document.querySelector('.js-audio-background');
+    const heartbeatEl = document.querySelector('.js-audio-heartbeat');
+    const screamEl = document.querySelector('.js-audio-scream');
     const path = '../../audio/';
     const suffix = '.mp3';
 
-    const play = (filename, el = audioEl) => {
+    const getMatchingEl = filename => {
+        if (filename === 'background') {
+            return backgroundEl;
+        }
+        if (filename === 'heartbeat') {
+            return heartbeatEl;
+        }
+        if (filename === 'scream') {
+            return screamEl;
+        }
+    };
+
+    const play = filename => {
+        const el = getMatchingEl(filename);
         el.setAttribute('src', `${path}/${filename}${suffix}`);
-        stop();
         el.play();
     };
 
-    const stop = (el = audioEl) => {
+    const stop = (filename) => {
+        const el = getMatchingEl(filename);
         el.pause();
     };
 

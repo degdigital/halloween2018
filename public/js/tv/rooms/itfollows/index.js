@@ -5,10 +5,9 @@ import audio from '../../components/audio.js';
 import gameplayManagement from './gameplayManagement.js';
 
 const el = document.getElementById('app');
-const backgroundAudioEl = document.querySelector('.js-bg-audio');
 const winScreenTime = 10;
 const diedScreenTime = 10;
-const gameplayTime = 50;
+const gameplayTime = 10;
 let gameplayManagementInst = null;
 let roomManagementInst;
 let gameWon = false;
@@ -20,7 +19,7 @@ const init = () => {
 
 const onInitialClick = () => {
     initRoomManagement();
-    audio.play('background', backgroundAudioEl);
+    audio.play('background');
     document.removeEventListener('click', onInitialClick);
 };
 
@@ -79,6 +78,7 @@ const onWin = () => {
             </div>
         </div>
     `);
+    audio.stop('heartbeat');
     if (gameplayManagementInst) {
         gameplayManagementInst.reset();
     }
@@ -87,6 +87,7 @@ const onWin = () => {
 
 const onDead = () => {
     if (gameWon === false) {
+        audio.stop('heartbeat');
         audio.play('scream');
         replaceContent(el, `
             <div class="itfollowstv">
