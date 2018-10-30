@@ -26,6 +26,7 @@ const itFollows = (el, options = {}) => {
             </div>
         `);
         buttonsWrapperEl = buttonsWrapperEl || el.querySelector('.js-buttons-wrapper');
+        buttonsWrapperEl.classList.remove('flicker');
     };
 
     const bindEvents = () => {
@@ -72,6 +73,7 @@ const itFollows = (el, options = {}) => {
                 ${output}
                 <button class="${settings.taskButtonClass}" name="${task.name}" value="${task.value}">${task.label}</button>
             `, ''));
+            buttonsWrapperEl.classList.add('flicker');
         }
     };
 
