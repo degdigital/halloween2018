@@ -48,11 +48,9 @@ const roomManagement = el => {
     const bindEvents = userInfo => {
         roomManagementRef.on('value', snapshot => {
             roomsInfo = snapshot.val();
-            const roomLeftOnRefresh = getRoomLeftOnRefresh(userInfo);
             if (currentRoom === null) {
                 renderSelectionScreen();
             }
-            
         });
         Object.keys(roomsInstances).forEach(roomId => {
             roomManagementRef.child(`${roomId}`).on('child_changed', snapshot => onStatusChange(snapshot.key, snapshot.val(), roomId));
@@ -60,16 +58,6 @@ const roomManagement = el => {
         el.addEventListener('click', e => onClick(e, userInfo));
         el.addEventListener('submit', e => onsubmit(e, userInfo));
     };
-
-    // const getRoomLeftOnRefresh = (userInfo = null) => {
-    //     if (!userInfo || !userInfo.key) {
-    //         return null;
-    //     }
-    //     return Object.keys(roomsInfo).find(roomId => {
-    //         const room = roomsInfo[roomId];
-    //         return room && room.users && room.users[userInfo.key] && room.status === 'occupied';
-    //     });
-    // };
 
     const onClick = (e, userInfo) => {
         const clickedEl = e.target;
