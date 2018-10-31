@@ -6,8 +6,8 @@ import gameplayManagement from './gameplayManagement.js';
 
 const el = document.getElementById('app');
 const winScreenTime = 10;
-const diedScreenTime = 10;
-const gameplayTime = 50;
+const diedScreenTime = 100000;
+const gameplayTime = 3;
 let gameplayManagementInst = null;
 let roomManagementInst;
 let gameWon = false;
@@ -95,10 +95,17 @@ const onDead = () => {
         replaceContent(el, `
             <div class="itfollowstv">
                 <div class="wrapper">
-                    <h1 class="dead">YOU'RE DEAD.</h1>
+                    <video src="/video/dead.mp4" preload="true" autoplay muted class="video js-video"></video>
                 </div>
             </div>
         `);
+        const wrprEl = el.querySelector('.wrapper');
+        setTimeout(() => {
+            wrprEl.insertAdjacentHTML('afterbegin', `
+                <h1 class="dead">YOU'RE DEAD.</h1>
+            `);
+        }, 2500);
+        
     }
     if (gameplayManagementInst) {
         gameplayManagementInst.reset();
