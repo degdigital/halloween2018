@@ -78,7 +78,7 @@ const onWin = () => {
     replaceContent(el, `
         <div class="itfollowstv">
             <div class="wrapper">
-                <h1 class="survived">You survived...this time.</h1>
+                <h1 class="survived">You escaped...this time.</h1>
             </div>
         </div>
     `);
