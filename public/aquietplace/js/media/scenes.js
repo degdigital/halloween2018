@@ -14,7 +14,7 @@ const scenes = {
         audio: {
             id: 'static',
             loop: true,
-            volume: .05
+            volume: .15
         }
     },
     gameIdle: {
