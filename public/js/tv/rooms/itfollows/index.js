@@ -6,8 +6,8 @@ import gameplayManagement from './gameplayManagement.js';
 
 const el = document.getElementById('app');
 const winScreenTime = 10;
-const diedScreenTime = 100000;
-const gameplayTime = 3;
+const diedScreenTime = 10;
+const gameplayTime = 50;
 let gameplayManagementInst = null;
 let roomManagementInst;
 let gameWon = false;
