@@ -69,7 +69,7 @@ function displayInstructionsSegment(messageEl, scriptIndex) {
 }
 
 function transitionOut(messageEl) {
-    audioPlayer.setVolume(introAudioIndex, .75, 6, 1);
+    audioPlayer.setVolume(introAudioIndex, 1, 6, 1);
 
     const videoEl = document.querySelector('#video');
 
