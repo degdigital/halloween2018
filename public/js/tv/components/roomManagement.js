@@ -33,6 +33,9 @@ const roomManagement = ({timer, roomId, onIdle, onAwaitingPlayers, onOccupied}) 
     };
 
     const handleAwaitingStatus = async () => {
+        if (!generatedCode) {
+            generatedCode = await generateCode();
+        }
         onAwaitingPlayers(generatedCode);
     };
 
