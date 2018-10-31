@@ -16,10 +16,6 @@ const audioFiles = [
         src: 'audio/growl.wav'
     },
     {
-        id: 'spooky_ambience',
-        src: 'audio/spooky_ambience.wav'
-    },
-    {
         id: 'rigor-mortis-flesh',
         src: 'audio/creak.wav'
     },
