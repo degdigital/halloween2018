@@ -67,7 +67,7 @@ const onOccupied = userInfo => {
     gameplayManagementInst = gameplayManagement(gameplayEl, {
         onStartCallback: () => {
             countdownTimer(countdownEl, gameplayTime);
-            gameplayTimer = setTimeout(() => onDead, gameplayTime);
+            gameplayTimer = setTimeout(onDead, gameplayTime * 1000);
         },
         onWinCallback: onWin
     });
