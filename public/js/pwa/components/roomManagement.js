@@ -72,6 +72,7 @@ const roomManagement = el => {
         if (clickedEl.matches(`.${codeEnterFormCancelTriggerClass}`)) {
             e.preventDefault();
             renderSelectionScreen();
+            currentRoom = null;
         }
     };
 
@@ -179,6 +180,7 @@ const roomManagement = el => {
             </div>
         `);
         el.querySelector('.pwa-pregame--enter-code input').focus();
+        currentRoom = 'enteringCode';
     };
 
     const renderWaitingScreen = roomId => {
