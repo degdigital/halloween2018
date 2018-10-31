@@ -56,7 +56,7 @@ function onDetect(value) {
 
     const severity = getSeverity(value);
     
-    if(severity > 0 && severity > state.currentSeverity) {
+    if(value > 1 && severity > state.currentSeverity) {
         store.setState({ 
             isGameScenePlaying: true, 
             currentSeverity: severity
@@ -151,7 +151,8 @@ function endGame() {
     countdownInst.stop();
 }
 
-function onKeyPress() {
+function onKeyPress(e) {
+    e.preventDefault();
     winGame();
 }
 
