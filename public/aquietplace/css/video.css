@@ -1,0 +1,47 @@
+.video {
+    position: fixed;
+    left: 50%;
+    top: 10%;
+    width: calc(100% - 18em);
+    margin-left: -40%;
+    /*transform: translateX(-50%);*/
+    height: 80%;
+    /*transition: transform .5s ease-in, opacity .5s ease-in .25s;*/
+    /*animation: fade-in 3s ease-in 0s 1 normal forwards running;*/
+}
+
+.video--zoom {
+    /*transform: scale(10);
+    opacity: 0;*/
+    animation: stutter-zoom 1.25s ease-in 0s 1 normal both running;
+}
+
+@keyframes stutter-zoom {
+    0% {
+        transform: scale(2);
+    }
+    24% {
+        transform: scale(2);
+    }
+    25% {
+        transform: scale(4);
+    }
+    49% {
+        transform: scale(4);
+    }
+    50% {
+        transform: scale(8);
+    }
+    74% {
+        transform: scale(8);
+    }
+    75% {
+        transform: scale(16);
+    }
+    99% {
+        transform: scale(16);
+    }
+    100% {
+        transform: scale(32);
+    }
+}

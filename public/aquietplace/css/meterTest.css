@@ -1,0 +1,19 @@
+@import 'meter.css';
+
+body {
+    background-color: #000;
+    font-family: Arial, sans-serif;
+}
+
+.data-output {
+    background-color: #333;
+    color: #aaa;
+    padding: 1em;
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+}
+
+.data-output div + div {
+    margin-top: .5em;
+}
