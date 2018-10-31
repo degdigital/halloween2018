@@ -61,6 +61,11 @@ body {
     font-family: 'Special Elite', cursive;
 }
 
+html,
+body {
+    overscroll-behavior-y: contain;
+}
+
 .pwa-pregame,
 .itfollows-wrapper {
     display: flex;
