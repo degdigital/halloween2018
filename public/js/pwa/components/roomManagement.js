@@ -95,8 +95,9 @@ const roomManagement = el => {
     const onStatusChange = (key, value, roomId) => {
         if (key === 'status') {
             if (value === roomStatuses.idle) {
-                currentRoom = null;
-                renderSelectionScreen();
+                // currentRoom = null;
+                // renderSelectionScreen();
+                location.reload();
             }
             if (value === roomStatuses.awaitingPlayers && currentRoom === roomId) {
                 renderWaitingScreen(roomId);
@@ -112,6 +113,7 @@ const roomManagement = el => {
             status: roomStatuses.idle,
             users: null
         });
+
     };
 
     const joinWaiting = (roomId, userInfo) => {

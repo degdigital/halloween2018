@@ -372,7 +372,7 @@ const tasks = [
     },
     {
         name: 'taskBBB',
-        label: 'Run down stairs',
+        label: 'Down stairs',
         instructions: 'Run down the stairs',
         type: 'button',
         value: true

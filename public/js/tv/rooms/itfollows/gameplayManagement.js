@@ -9,7 +9,7 @@ const gameplayManagement = (el, settings = {}) => {
     const correctTaskRef = db.ref('roomManagement/itFollows/correctTask');
     const correctCountRef = db.ref('roomManagement/itFollows/correctCount');
     const usersRef = db.ref('roomManagement/itFollows/users');
-    const instructionsTime = 15;
+    const instructionsTime = 3;
     let buttonCount = 6;
     let users;
     let numberToWin = 15;

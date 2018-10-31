@@ -3,7 +3,6 @@ import {replaceContent} from '../../utils/domUtils.js';
 const itFollows = (el, options = {}) => {
 
     const defaults = {
-        endTriggerClass: 'itfollows-end-trigger',
         taskButtonClass: 'itfollows-task-button'
     };
     const settings = {...defaults, ...options};
@@ -32,9 +31,6 @@ const itFollows = (el, options = {}) => {
     const bindEvents = () => {
         el.addEventListener('click', e => {
             const clickedEl = e.target;
-            if (clickedEl.matches(`.${settings.endTriggerClass}`)) {
-                settings.onEnd(settings.roomId);
-            }
             if (clickedEl.matches(`.${settings.taskButtonClass}`)) {
                 onTaskButtonClick(clickedEl);
             }
