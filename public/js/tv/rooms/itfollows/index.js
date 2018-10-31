@@ -11,6 +11,7 @@ const gameplayTime = 50;
 let gameplayManagementInst = null;
 let roomManagementInst;
 let gameWon = false;
+let gameplayTimer = null;
 
 const init = () => {
     document.addEventListener('click', onInitialClick);
@@ -64,7 +65,10 @@ const onOccupied = userInfo => {
     const gameplayEl = el.querySelector('.js-gameplay');
     const countdownEl = el.querySelector('.js-countdown');
     gameplayManagementInst = gameplayManagement(gameplayEl, {
-        onStartCallback: () => countdownTimer(countdownEl, gameplayTime, onDead),
+        onStartCallback: () => {
+            countdownTimer(countdownEl, gameplayTime);
+            gameplayTimer = setTimeout(() => onDead, gameplayTime);
+        },
         onWinCallback: onWin
     });
 };
@@ -79,12 +83,13 @@ const onWin = () => {
         </div>
     `);
     audio.stop('heartbeat');
+    clearTimeout(gameplayTimer);
     if (gameplayManagementInst) {
         gameplayManagementInst.reset();
     }
     countdownTimer(null, winScreenTime, () => {
         gameWon = false;
-        roomManagementInst.endSession()
+        roomManagementInst.endSession();
     });
 };
 

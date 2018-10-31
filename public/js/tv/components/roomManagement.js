@@ -43,7 +43,8 @@ const roomManagement = ({timer, roomId, onIdle, onAwaitingPlayers, onOccupied}) 
         resetTimer();
         roomManagementRef.update({
             status: 'idle',
-            users: null
+            users: null,
+            correctTask: null
         }).then(handleIdleStatus);
     };
     
