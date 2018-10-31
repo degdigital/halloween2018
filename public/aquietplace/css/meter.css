@@ -1,0 +1,75 @@
+.meter-wrap {
+    position: fixed;
+    width: 20em;
+    height: 5em;
+    right: 0;
+    top: 50%;
+    overflow: hidden;
+    margin: -2.5em 4.5em 0 0;
+    transform: translate(50%) rotate(-90deg);
+}
+
+.meter-wrap:before {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    width: 101.66666666%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(0,0,0,0),
+        rgba(0,0,0,0) 85%,
+        #000 85%
+    );
+    background-size: 11.1111111% 100%;
+}
+
+meter {
+    appearance: none;
+    /*transform: rotate(-90deg);
+    transform-origin: 0 right;*/
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+}
+
+meter::-webkit-meter-bar {
+    background: linear-gradient(
+        to right,
+        rgba(134,204,0,.25),
+        rgba(134,204,0,.25) 33.3333333%,
+        rgba(255,219,26,.25) 33.3333333%,
+        rgba(255,219,26,.25) 66.6666666%,
+        rgba(204,70,0,.25) 66.6666666%,
+        rgba(204,70,0,.25)
+    );
+}
+
+meter::-webkit-meter-optimum-value {
+    background: rgba(134,204,0);
+}
+
+meter::-webkit-meter-suboptimum-value {
+    background: linear-gradient(
+        to right,
+        rgba(134,204,0),
+        rgba(134,204,0) 6.6666666em,
+        rgba(255,219,26) 6.6666666em
+    );
+}
+
+meter::-webkit-meter-even-less-good-value {
+    background: linear-gradient(
+        to right,
+        rgba(134,204,0),
+        rgba(134,204,0) 6.6666666em,
+        rgba(255,219,26) 6.6666666em,
+        rgba(255,219,26) 13.3333333em,
+        rgba(204,70,0) 13.3333333em
+    );
+}
+
+/*meter::-webkit-meter-optimum-value, meter::-webkit-meter-suboptimum-value, meter::-webkit-meter-even-less-good-value {
+    
+}*/
