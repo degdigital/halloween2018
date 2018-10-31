@@ -95,9 +95,11 @@ const roomManagement = el => {
     const onStatusChange = (key, value, roomId) => {
         if (key === 'status') {
             if (value === roomStatuses.idle) {
+                if (currentRoom === roomId) {
+                    location.reload();
+                }
                 // currentRoom = null;
                 // renderSelectionScreen();
-                location.reload();
             }
             if (value === roomStatuses.awaitingPlayers && currentRoom === roomId) {
                 renderWaitingScreen(roomId);
